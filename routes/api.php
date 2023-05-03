@@ -121,4 +121,4 @@ Route::get("clients/search/{nom_client}", [ClientController::class, 'search']);
 Route::get("users/search/{name}", [UserController::class, 'search']);
 Route::get("techniciens/search/{nom_technicien}", [TechnicienController::class, 'search']);
 Route::get("sites/search/{nom_site}", [SiteController::class, 'search']);
-Route::get("users/search/{role}", [RoleController::class, 'search']);
+Route::get("users/search/role/{role}", [RoleController::class, 'search']);
