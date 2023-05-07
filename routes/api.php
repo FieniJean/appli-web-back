@@ -29,9 +29,9 @@ use App\Http\Controllers\UserController;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
 
 
 
@@ -55,67 +55,60 @@ Route::post('techniciens/reset_password', 'App\Http\Controllers\API\TechnicienCo
 
 //Routes pour l'authentifiaction des user et super admin
 Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth:sanctum');
+Route::post('/login', [AuthController::class, 'login']);
 
-
-
-Route::middleware('auth:sanctum')->group(function () {
-    // Routes pour l'admin
-    Route::middleware('role:admin')->group(function () {
-        // Routes pour les methode CRUD DES CLIENTS
-        Route::apiResource('clients', ClientController::class);
-        // Routes pour les methodes CRUD DES SITES
-        Route::apiResource('sites', SiteController::class);
-        // Routes pour les methodes CRUD DES contrats
-        Route::apiResource('contrats', ContratController::class);
-        // Routes pour les methodes CRUD DES contrats
-        Route::apiResource('extincteurs', ExtincteurController::class);
-        // Routes pour les methodes CRUD DES interventions
-        Route::apiResource('interventions', InterventionController::class);
-        // Routes pour les methodes CRUD DES souscriptions
-        Route::apiResource('souscriptions', SouscriptionController::class);
-        // Routes pour les methodes CRUD DES techniciens
-        Route::apiResource('techniciens', TechnicienController::class);
-        // Routes pour les methodes CRUD DES techniciens
-        Route::apiResource('categories', CategorieController::class);
-    });
-
-
-    // Routes pour le super admin
-    Route::middleware('role:superadmin')->group(function () {
-
-        //Create delete update admins
-        Route::get('/admin', [AdminController::class, 'index']);
-        Route::post('/admin', [AdminController::class, 'create']);
-        Route::put('/admin/{id}', [AdminController::class, 'update']);
-        Route::delete('/admin/{id}', [AdminController::class, 'delete']);
-        //Create delete update super-admins
-        Route::get('/superadmin', [SuperAdminController::class, 'index']);
-        Route::post('/superadmin', [SuperAdminController::class, 'create']);
-        Route::put('/superadmin/{id}', [SuperAdminController::class, 'update']);
-        Route::delete('/superadmin/{id}', [SuperAdminController::class, 'delete']);
-
-        // Routes pour les methode CRUD DES CLIENTS
-        Route::apiResource('clients', ClientController::class);
-        // Routes pour les methodes CRUD DES SITES
-        Route::apiResource('sites', SiteController::class);
-        // Routes pour les methodes CRUD DES contrats
-        Route::apiResource('contrats', ContratController::class);
-        // Routes pour les methodes CRUD DES contrats
-        Route::apiResource('extincteurs', ExtincteurController::class);
-        // Routes pour les methodes CRUD DES interventions
-        Route::apiResource('interventions', InterventionController::class);
-        // Routes pour les methodes CRUD DES souscriptions
-        Route::apiResource('souscriptions', SouscriptionController::class);
-        // Routes pour les methodes CRUD DES techniciens
-        Route::apiResource('techniciens', TechnicienController::class);
-        // Routes pour les methodes CRUD DES techniciens
-        Route::apiResource('categories', CategorieController::class);
+Route::middleware(['auth:sanctum', 'isAPIAdmin'])->group(function () {
+    Route::get('/checkingAuthenticated', function () {
+        return response()->json(['message' => 'You are in', 'status' => 200], 200);
     });
 });
 
-///Search APIs
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
+});
+
+
+
+
+// Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth:sanctum');
+
+
+
+
+// Routes pour les methode CRUD DES CLIENTS
+Route::apiResource('clients', ClientController::class);
+// Routes pour les methodes CRUD DES SITES
+Route::apiResource('sites', SiteController::class);
+// Routes pour les methodes CRUD DES contrats
+Route::apiResource('contrats', ContratController::class);
+// Routes pour les methodes CRUD DES contrats
+Route::apiResource('extincteurs', ExtincteurController::class);
+// Routes pour les methodes CRUD DES interventions
+Route::apiResource('interventions', InterventionController::class);
+// Routes pour les methodes CRUD DES souscriptions
+Route::apiResource('souscriptions', SouscriptionController::class);
+// Routes pour les methodes CRUD DES techniciens
+Route::apiResource('techniciens', TechnicienController::class);
+// Routes pour les methodes CRUD DES techniciens
+Route::apiResource('categories', CategorieController::class);
+
+
+
+
+//Create delete update admins
+Route::get('/admin', [AdminController::class, 'index']);
+Route::post('/admin', [AdminController::class, 'create']);
+Route::put('/admin/{id}', [AdminController::class, 'update']);
+Route::delete('/admin/{id}', [AdminController::class, 'delete']);
+//Create delete update super-admins
+Route::get('/superadmin', [SuperAdminController::class, 'index']);
+Route::post('/superadmin', [SuperAdminController::class, 'create']);
+Route::put('/superadmin/{id}', [SuperAdminController::class, 'update']);
+Route::delete('/superadmin/{id}', [SuperAdminController::class, 'delete']);
+
+
+
+//Search APIs
 
 Route::get("clients/search/{nom_client}", [ClientController::class, 'search']);
 Route::get("users/search/{name}", [UserController::class, 'search']);

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+// use Illuminate\Foundation\Auth\User;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use PhpParser\Node\Stmt\Return_;
@@ -14,6 +17,15 @@ class UserController extends Controller
     public function search($name)
     {
         return User::where("name", "like", "%" . $name . "%")->get();
+    }
+
+    public function index(Request $request)
+    {
+        $users = User::all();
+        return response()->json([
+            'status' => 200,
+            'users' => $users,
+        ]);
     }
 }
 // class AuthController extends Controller

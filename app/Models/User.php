@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Database\Eloquent\Model;
 
 
 
@@ -51,7 +49,7 @@ class User extends Authenticatable
     public static $rules = [
         'name' => 'required|string|max:255',
         'email' => 'required|string|email|max:255|unique:users',
-        'password' => 'required|string|min:8|confirmed',
+        'password' => 'required|string|min:8',
     ];
 
     //Validation logical for users
@@ -60,17 +58,9 @@ class User extends Authenticatable
 
         'name' => 'required|string|max:255',
         'email' => 'required|string|email|max:255|unique:users',
-        'password' => 'required|string|min:8|confirmed',
+        'password' => 'required|string|min:8',
 
     ];
-
-    //Relation betwen users and authentification Token
-
-    // public function  tokens()
-    // {
-    //     return $this->hasMany(Token::class);
-    // }
-
 
 
     // Relation one-to-many avec le modèle Role
