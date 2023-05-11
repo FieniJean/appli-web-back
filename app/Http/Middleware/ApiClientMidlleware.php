@@ -20,17 +20,17 @@ class ApiAdminMiddleware
     {
         if (Auth::check()) {
             $user = $request->user();
-            if ($user->can('server:admin')) {
+            if ($user->can('server:client')) {
                 return $next($request);
             } else {
                 return response()->json([
-                    'message' => 'Forbidden!',
+                    'message' => 'Forbidden! Only for customers',
                 ], 403);
             }
         } else {
             return response()->json([
                 'status' => 401,
-                'message' => 'Please Login First Admin',
+                'message' => 'Please Login First!',
             ]);
         }
     }

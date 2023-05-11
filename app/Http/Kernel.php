@@ -28,7 +28,7 @@ class Kernel extends HttpKernel
         // \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class,
 
         // 'isAPIAdmin' => \App\Http\Middleware\ApiAdminMiddleware::class,
-
+        // 'isAPIClient' => \App\Http\Middleware\ApiAdminMiddleware::class,
 
     ];
 
