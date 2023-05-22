@@ -31,7 +31,8 @@ class SiteController extends Controller
         $site = new Site;
         $site->nom_site = $request->nom_site;
         $site->adresse_site = $request->adresse_site;
-        $site->cordonnee_gps = $request->cordonnee_gps;
+        $site->longitude = $request->longitude;
+        $site->latitude = $request->latitude;
         $site->client_id = $request->client_id;
         $site->save();
         return response()->json($site);
@@ -63,7 +64,8 @@ class SiteController extends Controller
         $site = Site::findOrFail($id);
         $site->nom_site = $request->nom_site;
         $site->adresse_site = $request->adresse_site;
-        $site->cordonnee_gps = $request->cordonnee_gps;
+        $site->longitude = $request->longitude;
+        $site->latitude = $request->latitude;
         $site->client_id = $request->client_id;
         $site->save();
         return response()->json($site);

@@ -14,7 +14,6 @@ return new class extends Migration
     public function up()
     {
         Schema::create('clients', function (Blueprint $table) {
-            // $table->inherits('users');
             $table->id();
             $table->string('nom_client');
             $table->string('statut_client')->nullable();
@@ -23,8 +22,6 @@ return new class extends Migration
             $table->string('password_client');
             $table->string('adresse_client')->nullable();
             $table->integer('telephone_client')->nullable();
-            // $table->unsignedBigInteger('user_id');
-            // $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

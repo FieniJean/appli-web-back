@@ -15,7 +15,6 @@ return new class extends Migration
     public function up()
     {
         Schema::create('techniciens', function (Blueprint $table) {
-            // $table->inherits('users');
             $table->id();
             $table->string('nom_technicien');
             $table->string('prenom_technicien')->nullable();
@@ -23,8 +22,6 @@ return new class extends Migration
             $table->string('password_technicien');
             $table->string('adresse_technicien')->nullable();
             $table->integer('telephone_technicien')->nullable();
-            // $table->unsignedBigInteger('user_id');
-            // $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

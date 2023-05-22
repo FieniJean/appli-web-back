@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('nom_site');
             $table->string('adresse_site');
-            $table->string('cordonnee_gps');
+            $table->decimal('longitude', 10, 7);
+            $table->decimal('latitude', 10, 7);
             $table->unsignedBigInteger('client_id');
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->timestamps();

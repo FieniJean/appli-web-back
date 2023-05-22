@@ -21,9 +21,7 @@ return new class extends Migration
             $table->date('date_expiration');
             $table->unsignedBigInteger('categorie_id');
             $table->foreign('categorie_id')->references('id')->on('categories')->onDelete('cascade');
-            // $table->foreignId('client_id')->constrained();
             $table->foreignId('site_id')->constrained()->onDelete('cascade');
-            // Ajoutez d'autres champs si nécessaire
             $table->timestamps();
         });
     }
