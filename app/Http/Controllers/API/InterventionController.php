@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Models\Intervention;
 use App\Http\Controllers\Controller;
-use App\Models\Client;
+// use App\Models\Client;
 use Illuminate\Http\Request;
 
 class InterventionController extends Controller
@@ -17,7 +17,6 @@ class InterventionController extends Controller
     public function index()
     {
         $interventions = Intervention::all(); //Récupérations de toutes les interventions
-
         return response()->json($interventions); //Rétourne une reponse au format JSON
 
         //
@@ -50,7 +49,7 @@ class InterventionController extends Controller
      */
     public function show($id)
     {
-        $intervention = Intervention::findOrFail($id);
+        $intervention = Intervention::find($id);
         return response()->json($intervention);
         //
     }
@@ -65,7 +64,7 @@ class InterventionController extends Controller
     public function update(Request $request, $id)
     {
 
-        $intervention = Intervention::findOrFail($id);
+        $intervention = Intervention::find($id);
         $intervention->date_intervention = $request->date_intervention;
         $intervention->date_proch_intervention = $request->date_proch_intervention;
         $intervention->notes_intervention = $request->notes_intervention;
@@ -84,7 +83,7 @@ class InterventionController extends Controller
      */
     public function destroy($id)
     {
-        $intervention = Intervention::findOrFail($id);
+        $intervention = Intervention::find($id);
         $intervention->delete();
         return response()->json('Intervention supprimée avec succès.');
 

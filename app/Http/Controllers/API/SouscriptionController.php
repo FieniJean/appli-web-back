@@ -45,7 +45,7 @@ class SouscriptionController extends Controller
      */
     public function show($id)
     {
-        $souscription = Souscription::findOrFail($id);
+        $souscription = Souscription::find($id);
         return response()->json($souscription);
         //
     }
@@ -59,7 +59,7 @@ class SouscriptionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $souscription = Souscription::findOrFail($id);
+        $souscription = Souscription::find($id);
         $souscription->date_souscriptions = $request->date_souscriptions;
         $souscription->client_id = $request->client_id;
         $souscription->contrat_id = $request->contrat_id;
@@ -77,7 +77,7 @@ class SouscriptionController extends Controller
     public function destroy($id)
     {
 
-        $souscription = Souscription::findOrFail($id);
+        $souscription = Souscription::find($id);
         $souscription->delete();
         return response()->json('Souscription supprimée avec succès.');
         //

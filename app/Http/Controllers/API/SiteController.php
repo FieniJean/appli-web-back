@@ -47,7 +47,7 @@ class SiteController extends Controller
      */
     public function show($id)
     {
-        $site = Site::findOrFail($id);
+        $site = Site::find($id);
         return response()->json($site);
         //
     }
@@ -61,7 +61,7 @@ class SiteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $site = Site::findOrFail($id);
+        $site = Site::find($id);
         $site->nom_site = $request->nom_site;
         $site->adresse_site = $request->adresse_site;
         $site->longitude = $request->longitude;
@@ -80,7 +80,7 @@ class SiteController extends Controller
      */
     public function destroy($id)
     {
-        $site = Site::findOrFail($id);
+        $site = Site::find($id);
         $site->delete();
         return response()->json('Site supprimé avec succès.');
         //

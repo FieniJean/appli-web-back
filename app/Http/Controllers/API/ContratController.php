@@ -47,7 +47,7 @@ class ContratController extends Controller
      */
     public function show($id)
     {
-        $contrat = Contrat::findOrFail($id);
+        $contrat = Contrat::find($id);
         return response()->json($contrat);
         //
     }
@@ -61,7 +61,7 @@ class ContratController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $contrat = Contrat::findOrFail($id);
+        $contrat = Contrat::find($id);
 
         $contrat->date_debut = $request->date_debut;
         $contrat->date_fin = $request->date_fin;
@@ -80,7 +80,7 @@ class ContratController extends Controller
      */
     public function destroy($id)
     {
-        $contrat = Contrat::findOrFail($id);
+        $contrat = Contrat::find($id);
         $contrat->delete();
         return response()->json('Contrat supprimé avec succès.');
     }

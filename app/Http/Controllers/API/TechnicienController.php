@@ -64,7 +64,7 @@ class TechnicienController extends Controller
      */
     public function show($id)
     {
-        $technicien = Technicien::findOrFail($id);
+        $technicien = Technicien::find($id);
         return response()->json($technicien);
         //
     }
@@ -89,7 +89,7 @@ class TechnicienController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $technicien = Technicien::findOrFail($id);
+        $technicien = Technicien::find($id);
         $technicien->photo_technicien = $request->photo_technicien;
         $technicien->nom_technicien = $request->nom_technicien;
         $technicien->prenom_technicien = $request->prenom_technicien;
@@ -111,7 +111,7 @@ class TechnicienController extends Controller
      */
     public function destroy($id)
     {
-        $technicien = Technicien::findOrFail($id);
+        $technicien = Technicien::find($id);
         $technicien->delete();
         return response()->json('Technicien supprimé avec succès.');
 

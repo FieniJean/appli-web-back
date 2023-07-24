@@ -51,7 +51,7 @@ class ExtincteurController extends Controller
      */
     public function show($id)
     {
-        $extincteur = Extincteur::findOrFail($id);
+        $extincteur = Extincteur::find($id);
         return response()->json($extincteur);
         //
     }
@@ -65,7 +65,7 @@ class ExtincteurController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $extincteur = Extincteur::findOrFail($id);
+        $extincteur = Extincteur::find($id);
         $extincteur->numero_extincteur = $request->numero_extincteur;
         $extincteur->date_creation = $request->date_creation;
         $extincteur->date_expiration = $request->date_expiration;
@@ -84,7 +84,7 @@ class ExtincteurController extends Controller
      */
     public function destroy($id)
     {
-        $extincteur = Extincteur::findOrFail($id);
+        $extincteur = Extincteur::find($id);
         $extincteur->delete();
         return response()->json('Extincteur supprimé avec succès.');
     }

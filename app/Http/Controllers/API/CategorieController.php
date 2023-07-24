@@ -50,7 +50,7 @@ class CategorieController extends Controller
      */
     public function show($id)
     {
-        $categorie = Categorie::findOrFail($id);
+        $categorie = Categorie::find($id);
         return response()->json($categorie);
         //
     }
@@ -64,7 +64,7 @@ class CategorieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $categorie = Categorie::findOrFail($id);
+        $categorie = Categorie::find($id);
         $categorie->type_incendie = $request->type_incendie;
         $categorie->nom_extincteur = $request->nom_extincteur;
         $categorie->agent_extincteur = $request->agent_extincteur;
@@ -85,7 +85,7 @@ class CategorieController extends Controller
      */
     public function destroy($id)
     {
-        $categorie = Categorie::findOrFail($id);
+        $categorie = Categorie::find($id);
         $categorie->delete();
         return response()->json('Catégorie supprimée avec succès.');
     }

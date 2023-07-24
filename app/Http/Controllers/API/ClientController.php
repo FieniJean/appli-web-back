@@ -55,7 +55,7 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        $client = Client::findOrFail($id);
+        $client = Client::find($id);
         return response()->json($client);
     }
 
@@ -68,7 +68,7 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $client = Client::findOrFail($id);
+        $client = Client::find($id);
         $client->nom_client = $request->nom_client;
         $client->statut_client = $request->statut_client;
         $client->prenom_client = $request->prenom_client;
@@ -88,14 +88,14 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        $client = Client::findOrFail($id);
+        $client = Client::find($id);
         $client->delete();
         return response()->json('Client supprimé avec succès.');
     }
     /// Search a client API
     public function search($nom_technicien)
     {
-        return Client::where("nom_technician", "like", "%" . $nom_technicien . "%")->get();
+        return Client::where("nom_technicien", "like", "%" . $nom_technicien . "%")->get();
     }
 
 
